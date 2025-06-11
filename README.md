@@ -9,5 +9,6 @@
 
 ## 快速开始
 
-encrypt.bat
-docker.bat
+工程加密：encrypt.bat
+
+Docker部署：docker.bat
