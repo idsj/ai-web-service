@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  pyarmor-encrypt:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: encrypt
+    volumes:
+      - ../app:/app/src       # 挂载原始代码目录
+      - ./encryption:/app/dist  # 输出加密结果到宿主机
+    working_dir: /app
+    command:
+      - sh
+      - -c
+      - |
+        echo "🚀 开始加密..."
+        pyarmor-7 obfuscate --recursive src/*.py --output dist --entry src/app.py
+        rsync -avz --progress --exclude="*.py" --exclude="*.log" --exclude="*.env" --exclude="__pycache__/" --exclude="output*" src/ dist
+        echo "✅ 加密完成，结果已保存到 ./encryption"
+
+    restart: "on-failure:1"
