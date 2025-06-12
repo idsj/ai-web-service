@@ -15,7 +15,7 @@ services:
       - -c
       - |
         echo "🚀 开始加密..."
-        pyarmor-7 obfuscate --recursive src/*.py --output dist --entry src/app.py
+        pyarmor-7 obfuscate --recursive src/*.py --output dist --entry src/main.py
         rsync -avz --progress --exclude="*.py" --exclude="*.log" --exclude="*.env" --exclude="__pycache__/" --exclude="output*" src/ dist
         echo "✅ 加密完成，结果已保存到 ./encryption"
 

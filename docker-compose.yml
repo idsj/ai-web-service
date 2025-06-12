@@ -8,8 +8,6 @@ services:
     container_name: ai-service
     ports:
       - "5000"
-    volumes:
-      - ./app:/app
     restart: always
     environment:
       - ENV=production
